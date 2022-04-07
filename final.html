@@ -1,17 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"> 
     <script type="module" src="scene.js"></script>
     <style type="text/css">
         html {
-            min-height: 100%;
+            height: 100%;
         }
 
         body {
-            background: linear-gradient(to bottom right, #E9DEFA, #FBFCDB) no-repeat;
+            min-height: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to top left, #E9DEFA, #FBFCDB) no-repeat;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            font-size: 48pt;
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            font-weight: 400;
+            font-family: 'Inter', sans-serif;
+            font-size: 32pt;
+            margin-bottom: 56px;
+        }
+
+        a {
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            font-size: 16pt;
+            padding: 18px 58px;
+            background-color: #AFE1FA;
+            border-radius: 8px;
+            filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            min-height: 100% !important;
+            height: 100% !important;
+            align-items: center;
+            margin: 0;
+        }
+
+        .col {
+            margin: auto;
+            margin-top: 150px;
+            height: 100%;
+        }
+        canvas {
+            display: block;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="col" style="width: 30%">
+            <h1>UDesign x UTCG</h1>
+            <h2>Landing Page Globe<br>Design Workshop</h2>
+            <a>Learn More</a>
+        </div>
+        <div class="col">
+            <div id="globediv" style="width: 100%; height: 100%; margin: auto;"></div>
+        </div>
+    </div>
 </body>
 </html>
