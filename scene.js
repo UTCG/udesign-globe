@@ -118,12 +118,10 @@ function init() {
     // lighting
     const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
     scene.add(ambientLight);
-    const sun = new THREE.PointLight(0xffffff, 10, 20);
-    sun.position.set(10, 10, 10);
-    group.add(sun);
-    const followLight = new THREE.PointLight(0xffffff, 4, 20);
-    followLight.position.set(10, 5, 12);
-    camera.add(followLight);
+    const sun = new THREE.DirectionalLight(0xffffff, 2);
+    sun.target = sphere
+    sun.position.set(7, 10, 7);
+    camera.add(sun);
 
     // add markers to cool cities
     addMarker('Ottawa', 45.4215, -75.6972, 0xff0000, font, group);
@@ -135,6 +133,8 @@ function animate() {
     // request for animate() to be called again next frame
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+
+    group.rotation.y += 0.0025;
 }
 
 // ---------------- RUN PROGRAM ----------------
