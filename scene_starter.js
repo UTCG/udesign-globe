@@ -58,10 +58,9 @@ function textMesh(s, font, markerColor) {
 //       but this function expects S and W coordinates to be negative
 //       e.g. (45.4215 N, 75.6972 W) should be passed in as (45.4215, -75.6972)
 function addMarker(name, lat, lng, markerColor, font, group) {
-    let mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(0.025, 20, 20),
-        new THREE.MeshStandardMaterial({ color: markerColor })
-    );
+    // marker mesh
+    let mesh;
+    // ...
 
     // .copy() sets mesh.position = a copy of the calculated pos vector
     mesh.position.copy(calcPosFromLatLonRad(lat, lng, 1));
@@ -83,58 +82,34 @@ function addMarker(name, lat, lng, markerColor, font, group) {
 
 // ---------------- MAIN CODE ----------------
 
-function init() {
+function init(font) {
     // basic scene objects
-    scene = new THREE.Scene();
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    document.body.appendChild(renderer.domElement);
+    // ...
 
     // set up camera
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const controls = new OrbitControls(camera, renderer.domElement);
-    camera.position.z = 3;
-    scene.add(camera)
+    // ...
 
     // group of all of the objects we want to render in our scene
-    group = new THREE.Group();
-    scene.add(group);
+    // ...
 
     // globe - texture
-    const material = new THREE.MeshStandardMaterial({
-        map: new THREE.TextureLoader().load('./img/globe.jpg')
-    })
-    material.bumpMap = new THREE.TextureLoader().load('./img/earthbump1k.jpg');
-    material.bumpScale = 0.05;
+    // ...
 
     // globe - mesh
-    const sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 40, 40),
-        material
-    );
-    group.add(sphere);
+    // ...
 
     // lighting
-    const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
-    scene.add(ambientLight);
-    const sun = new THREE.PointLight(0xffffff, 10, 20);
-    sun.position.set(10, 10, 10);
-    group.add(sun);
-    const followLight = new THREE.PointLight(0xffffff, 4, 20);
-    followLight.position.set(10, 5, 12);
-    camera.add(followLight);
+    // ...
 
     // add markers to cool cities
-    addMarker('Ottawa', 45.4215, -75.6972, 0xff0000, font, group);
-    addMarker('Nairobi', -1.286389, 36.817223, 0x0000ff, font, group);
-    addMarker('Rio de Janeiro', -22.908333, -43.196388, 0x00ff00, font, group);
+    // ...
+
+    // start animating
+    animate();
 }
 
 function animate() {
-    // request for animate() to be called again next frame
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    // ...
 }
 
 // ---------------- RUN PROGRAM ----------------
