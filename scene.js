@@ -86,16 +86,19 @@ function addMarker(name, lat, lng, markerColor, font, group) {
 function init() {
     // basic scene objects
     scene = new THREE.Scene();
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer = new THREE.WebGLRenderer({alpha: true});
+    let div = document.getElementById('globediv');
+    let w = 700;
+    let h = 600;
+    renderer.setSize(w, h);
     renderer.setPixelRatio(window.devicePixelRatio);
-    document.body.appendChild(renderer.domElement);
+    div.appendChild(renderer.domElement);
 
     // set up camera
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
     const controls = new OrbitControls(camera, renderer.domElement);
     camera.position.z = 3;
-    scene.add(camera);
+    scene.add(camera)
 
     // group of all of the objects we want to render in our scene
     group = new THREE.Group();
