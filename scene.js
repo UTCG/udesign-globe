@@ -49,17 +49,17 @@ function textMesh(s, font, markerColor) {
             }
         ),
         new THREE.MeshStandardMaterial({ color: markerColor })
-    )
+    );
     return mesh;
-
 }
+
 // add a marker to the globe
 // NOTE: googled coordinates will be given as degrees N/S and E/W,
 //       but this function expects S and W coordinates to be negative
 //       e.g. (45.4215 N, 75.6972 W) should be passed in as (45.4215, -75.6972)
 function addMarker(name, lat, lng, markerColor, font, group) {
     let mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(0.025, 20, 20),
+        new THREE.SphereGeometry(0.015, 20, 20),
         new THREE.MeshStandardMaterial({ color: markerColor })
     );
 
@@ -77,8 +77,8 @@ function addMarker(name, lat, lng, markerColor, font, group) {
 
     console.log(name, lat, lng);
 
-    group.add(mesh)
-    group.add(text)
+    group.add(mesh);
+    group.add(text);
 }
 
 // ---------------- MAIN CODE ----------------
@@ -95,38 +95,34 @@ function init() {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const controls = new OrbitControls(camera, renderer.domElement);
     camera.position.z = 3;
-    scene.add(camera)
+    scene.add(camera);
 
     // group of all of the objects we want to render in our scene
     group = new THREE.Group();
     scene.add(group);
 
-    // globe - texture
+    // globe
+    const geometry = new THREE.SphereGeometry(1, 40, 40);
     const material = new THREE.MeshStandardMaterial({
-        map: new THREE.TextureLoader().load('./img/globe.jpg')
-    })
-    material.bumpMap = new THREE.TextureLoader().load('./img/earthbump1k.jpg');
-    material.bumpScale = 0.05;
-
-    // globe - mesh
-    const sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 40, 40),
-        material
-    );
+        map: new THREE.TextureLoader().load('./img/globe.jpg'),
+        bumpMap: new THREE.TextureLoader().load('./img/earthbump1k.jpg'),
+        bumpScale: 0.05,
+    });
+    const sphere = new THREE.Mesh(geometry, material);
     group.add(sphere);
 
     // lighting
     const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
     scene.add(ambientLight);
     const sun = new THREE.DirectionalLight(0xffffff, 2);
-    sun.target = sphere
+    sun.target = sphere;
     sun.position.set(7, 10, 7);
     camera.add(sun);
 
     // add markers to cool cities
-    addMarker('Ottawa', 45.4215, -75.6972, 0xff0000, font, group);
-    addMarker('Nairobi', -1.286389, 36.817223, 0x0000ff, font, group);
-    addMarker('Rio de Janeiro', -22.908333, -43.196388, 0x00ff00, font, group);
+    addMarker('Ottawa', 45.4215, -75.6972, 0x000000, font, group);
+    addMarker('Nairobi', -1.286389, 36.817223, 0x000000, font, group);
+    addMarker('Rio de Janeiro', -22.908333, -43.196388, 0x000000, font, group);
 }
 
 function animate() {

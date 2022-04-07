@@ -49,10 +49,10 @@ function textMesh(s, font, markerColor) {
             }
         ),
         new THREE.MeshStandardMaterial({ color: markerColor })
-    )
+    );
     return mesh;
-
 }
+
 // add a marker to the globe
 // NOTE: googled coordinates will be given as degrees N/S and E/W,
 //       but this function expects S and W coordinates to be negative
@@ -60,7 +60,7 @@ function textMesh(s, font, markerColor) {
 function addMarker(name, lat, lng, markerColor, font, group) {
     // marker mesh
     let mesh;
-    // ...
+    // ... TODO ...
 
     // .copy() sets mesh.position = a copy of the calculated pos vector
     mesh.position.copy(calcPosFromLatLonRad(lat, lng, 1));
@@ -76,40 +76,34 @@ function addMarker(name, lat, lng, markerColor, font, group) {
 
     console.log(name, lat, lng);
 
-    group.add(mesh)
-    group.add(text)
+    group.add(mesh);
+    group.add(text);
 }
 
 // ---------------- MAIN CODE ----------------
 
 function init(font) {
     // basic scene objects
-    // ...
+    // ... TODO ...
 
     // set up camera
-    // ...
+    // ... TODO ...
 
     // group of all of the objects we want to render in our scene
-    // ...
+    // ... TODO ...
 
-    // globe - texture
-    // ...
-
-    // globe - mesh
-    // ...
+    // globe
+    // ... TODO ...
 
     // lighting
-    // ...
+    // ... TODO ...
 
     // add markers to cool cities
-    // ...
-
-    // start animating
-    animate();
+    // ... TODO ...
 }
 
 function animate() {
-    // ...
+    // ... TODO ...
 }
 
 // ---------------- RUN PROGRAM ----------------
